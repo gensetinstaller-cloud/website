@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genset-Installer | Professional CAT Power Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cat-yellow: #FFCD11;
+            --cat-yellow-dark: #E5B800;
+            --deep-charcoal: #1A1A1A;
+            --soft-gray: #F4F4F4;
+            --text-main: #333333;
+            --text-light: #666666;
+            --white: #FFFFFF;
+            --danger: #D32F2F;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--cat-yellow);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        /* Rhombus / Diamond Logo Wrapper */
+        .logo-wrapper {
+            background: var(--cat-yellow);
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            width: 55px;
+            height: 55px;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover .logo-wrapper {
+            transform: scale(1.1);
+            background: var(--white);
+        }
+
+        .logo-img {
+            height: 32px;
+            width: 32px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 800;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            color: var(--cat-yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--cat-yellow);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=2070') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 10%;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+
+        .cta-button {
+            background: var(--cat-yellow);
+            color: var(--deep-charcoal);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--cat-yellow);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--deep-charcoal);
+        }
+
+        .process-list {
+            list-style: none;
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .process-item {
+            background: var(--soft-gray);
+            padding: 15px;
+            border-left: 4px solid var(--cat-yellow);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Products Section */
+        .products-container {
+            background: var(--deep-charcoal);
+            color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .product-tabs {
+            display: flex;
+            background: #222;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 20px;
+            border: none;
+            background: transparent;
+            color: var(--white);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background: var(--cat-yellow);
+            color: var(--deep-charcoal);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .product-card {
+            background: #2a2a2a;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            border-color: var(--cat-yellow);
+            transform: translateY(-5px);
+        }
+
+        .product-card h4 {
+            color: var(--cat-yellow);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .product-card p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+        }
+
+        .problem-box {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .problem-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .problem-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            color: var(--danger);
+            font-weight: 500;
+        }
+
+        .problem-list li::before {
+            content: '⚠️';
+            margin-right: 15px;
+        }
+
+        /* Brands Placeholder */
+        .brands-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            opacity: 0.6;
+        }
+
+        .brand-placeholder {
+            width: 150px;
+            height: 80px;
+            background: var(--soft-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #999;
+            border: 2px dashed #ccc;
+            border-radius: 4px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--deep-charcoal);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            text-decoration: none;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .info-item:hover {
+            color: var(--cat-yellow);
+        }
+
+        .info-item i {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--cat-yellow);
+        }
+
+        footer {
+            background: #111;
+            color: #666;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            border-top: 1px solid #222;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .process-list { grid-template-columns: 1fr; }
+            section { padding: 60px 5%; }
+            .hero h1 { font-size: 2.5rem; }
+            .contact-info { flex-direction: column; gap: 20px; }
+            .logo-text { font-size: 1rem; }
+            .logo-wrapper { width: 45px; height: 45px; }
+            .logo-img { height: 26px; width: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo-container">
+            <div class="logo-wrapper">
+                <img src="https://raw.githubusercontent.com/olayinkadahunsi247/graph-ai-portfolio/main/Industrial%20Logo%20with%20Lightning%20Bolt%20Accent.png" alt="Genset-Installer Logo" class="logo-img">
+            </div>
+            <div class="logo-text">GENSET<span>-INSTALLER</span></div>
+        </a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#products">CAT Products</a>
+            <a href="#problem">Problem</a>
+            <a href="#brands">Brands</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Reliable Power Starts with Professional Installation</h1>
+        <p>Expert site assessment, precise placement, and seamless electrical hook-ups for CAT Diesel & Gas Generators.</p>
+        <a href="#contact" class="cta-button">Request Site Inspection</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">
+            <h2>About Our Service</h2>
+            <p>Authorized expertise in CAT diesel and gas power solutions.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-content">
+                <h3>High-Performance Power</h3>
+                <p>CAT diesel and gas generators are globally recognized as the gold standard for reliable power. Whether you need standby backup for a hospital or prime power for heavy industrial sites, these units deliver robust performance, efficiency, and unparalleled durability.</p>
+                
+                <div class="process-list">
+                    <div class="process-item">Site Assessment & Survey</div>
+                    <div class="process-item">Foundation Preparation</div>
+                    <div class="process-item">Fuel Line Connection</div>
+                    <div class="process-item">Exhaust Fabrication</div>
+                    <div class="process-item">Electrical Hook-up</div>
+                    <div class="process-item">Rigorous Testing</div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&q=80&w=1000" alt="Generator Installation" style="width:100%; border-radius: 8px; box-shadow: 20px 20px 0 var(--cat-yellow);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" style="background-color: var(--soft-gray);">
+        <div class="section-title">
+            <h2>CAT-Genset Products</h2>
+            <p>The industry's most versatile range of diesel and gas solutions.</p>
+        </div>
+
+        <div class="products-container">
+            <div class="product-tabs">
+                <button class="tab-btn active" onclick="showProducts('diesel', this)">Diesel Gensets</button>
+                <button class="tab-btn" onclick="showProducts('gas', this)">Gas Gensets</button>
+            </div>
+
+            <div id="diesel-grid" class="product-grid">
+                <div class="product-card"><h4>GEP33</h4><p>30 kVA Prime Power</p></div>
+                <div class="product-card"><h4>GEP50</h4><p>45 kVA Prime Power</p></div>
+                <div class="product-card"><h4>GEP65</h4><p>60 kVA Prime Power</p></div>
+                <div class="product-card"><h4>GEP88</h4><p>80 kVA Prime Power</p></div>
+                <div class="product-card"><h4>GEP110</h4><p>100 kVA Prime Power</p></div>
+                <div class="product-card"><h4>Custom</h4><p>Higher capacities available</p></div>
+            </div>
+
+            <div id="gas-grid" class="product-grid" style="display: none;">
+                <div class="product-card"><h4>G3406</h4><p>380 kVA Capacity</p></div>
+                <div class="product-card"><h4>G3512</h4><p>906 kVA Capacity</p></div>
+                <div class="product-card"><h4>G3512H</h4><p>1500 kVA Capacity</p></div>
+                <div class="product-card"><h4>G3516H</h4><p>2000 kVA Capacity</p></div>
+                <div class="product-card"><h4>G3520H</h4><p>3106 kVA Capacity</p></div>
+                <div class="product-card"><h4>Custom</h4><p>Industrial scale solutions</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem-section">
+        <div class="section-title">
+            <h2>The Problem</h2>
+            <p>Why unfamiliarity with generator models is a critical risk.</p>
+        </div>
+        <div class="problem-box">
+            <p>Site inspection is the most crucial stage of the project. When teams lack deep familiarity with specific generator models, serious complications arise during installation:</p>
+            <ul class="problem-list">
+                <li>Incorrect installation planning leading to rework costs.</li>
+                <li>Inadequate space allocation for positioning and maintenance.</li>
+                <li>Incompatible fuel and electrical connections.</li>
+                <li>Breakdowns in communication with customers.</li>
+                <li>Severe safety risks to personnel and infrastructure.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section id="brands">
+        <div class="section-title">
+            <h2>Other Brands We Handle</h2>
+            <p>Extending our expertise across all major power manufacturers.</p>
+        </div>
+        <div class="brands-grid">
+            <div class="brand-placeholder">PERKINS</div>
+            <div class="brand-placeholder">CUMMINS</div>
+            <div class="brand-placeholder">KOHLER</div>
+            <div class="brand-placeholder">FG WILSON</div>
+            <div class="brand-placeholder">MTU</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-title">
+            <h2 style="color: var(--white);">Ready for Installation?</h2>
+            <p style="color: #aaa;">Get in touch with our expert team today.</p>
+        </div>
+        <div class="contact-info">
+            <a href="tel:+234913007000" class="info-item">
+                <i>📞</i>
+                <strong>Phone</strong><br>
+                +234 913 007 000
+            </a>
+            <a href="mailto:genset.installer@gmail.com" class="info-item">
+                <i>✉️</i>
+                <strong>Email</strong><br>
+                genset.installer@gmail.com
+            </a>
+            <div class="info-item">
+                <i>📍</i>
+                <strong>Location</strong><br>
+                Available Nationwide
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Genset-Installer. All Rights Reserved. CAT and Caterpillar are trademarks of Caterpillar Inc.</p>
+    </footer>
+
+    <script>
+        function showProducts(type, btn) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const dieselGrid = document.getElementById('diesel-grid');
+            const gasGrid = document.getElementById('gas-grid');
+
+            if (type === 'diesel') {
+                dieselGrid.style.display = 'grid';
+                gasGrid.style.display = 'none';
+            } else {
+                dieselGrid.style.display = 'none';
+                gasGrid.style.display = 'grid';
+            }
+        }
+    </script>
+</body>
+</html>
