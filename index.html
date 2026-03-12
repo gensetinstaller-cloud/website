@@ -603,7 +603,7 @@
         <p>&copy; 2024 Genset-Installer. All Rights Reserved. CAT and Caterpillar are trademarks of Caterpillar Inc.</p>
     </footer>
 
-    <!-- Webchat Scripts -->
+    <!-- Botpress Webchat Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/03/12/21/20260312212610-J7KJWQIU.js" defer></script>
 
@@ -637,6 +637,31 @@
         if (slides.length > 0) {
             setInterval(nextSlide, 4000);
         }
+
+        // Safely Initialize Botpress
+        window.addEventListener('load', function() {
+            const initBotpress = () => {
+                if (window.botpressWebChat && typeof window.botpressWebChat.init === 'function') {
+                    window.botpressWebChat.init({
+                        "composerPlaceholder": "Chat with Genset-Installer...",
+                        "botConversationDescription": "CAT Power Specialist",
+                        "botName": "Genset Assistant",
+                        "customerSupportEmail": "genset.installer@gmail.com",
+                        "enableConversationDeletion": true,
+                        "showPoweredBy": false,
+                        "themeName": "prism",
+                        "frontendVersion": "v1",
+                        "useSessionStorage": true,
+                        "theme": "prism",
+                        "themeColor": "#FFCD11"
+                    });
+                } else {
+                    // Retry if scripts haven't finished executing
+                    setTimeout(initBotpress, 500);
+                }
+            };
+            initBotpress();
+        });
     </script>
 </body>
 </html>
